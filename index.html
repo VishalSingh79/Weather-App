@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;600;700&display=swap"/>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h2 id="weatherName">WEATHER APP</h2>
+        <div class="btns">
+           <button class="btn" id="userTab">Your Weather</button>
+           <button class="btn" id="searchTab">Search Weather</button>
+        </div>
+        <div class="searchTab2">
+            <input type="text" id="searchCity" placeholder="Search City">
+            <img src="./assets/search.png" alt="" id="searchIcon">
+        </div>
+
+    <div id="weatherinfo">
+        
+        <div class="loading">
+        <img src="./assets/loading.gif" alt="" id="loadinggif">
+            <h5 id="loadingText">LOADING...</h5>
+        </div>
+
+        <div class="userlocation">
+        <img src="./assets/location.png" alt="access location" id="location">
+        <h4 id="accessGrant">GRANT LOCATION ACCESS</h4>
+        <p id="allowp">Allow Access to Get the Weather Information</p>
+        <button id="grantaccess">GRANT ACCESS</button>
+        </div>
+        
+        <div class="displayUserData">
+            <div id="ccName">
+                <span id="cityName"></span>
+                <img id="countryFlag"></img>
+            </div>  
+            <div class="desc"></div>
+            <div>
+                <img src="" alt="" id="weatherIcon"/>
+            </div>
+            <h2 id="weatherTemp">Vishal</h2>
+            <div id="weatherDataInfo">
+                <div id="windSpeed" class="wspec">
+                    <img src="./assets/wind.png" alt="Humidity" class="wlogo"/>
+                    <h4>WINDSPEED</h4>
+                    <div data-wind-info class="winddata"></div>
+                </div>
+                <div id="wHumidity" class="wspec">
+                    <img src="./assets/humidity.png" alt="Humidity" class="wlogo"/>
+                    <h4 >HUMIDITY</h4>
+                    <div data-humiditya-wind class="winddata"></div>
+                </div>
+                <div id="wClouds" class="wspec">
+                    <img src="./assets/cloud.png" alt="Humidity" class="wlogo"/>
+                    <h4>CLOUDS</h4>
+                    <div data-wind-cloud class="winddata"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

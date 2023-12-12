@@ -9,12 +9,15 @@ const loading=document.querySelector(".loading");
 const searchTab2=document.querySelector(".searchTab2");
 let searchCity=document.querySelector("#searchCity");
 const searchIcon=document.querySelector("#searchIcon");
+const notfound=document.querySelector(".notfound");
 let currentTab=userTab;
 currentTab.classList.add("tabCss");
 userCalling();
 
 
 userTab.addEventListener("click",()=>{
+
+    notfound.classList.remove("active");
     displayUserData.classList.remove("active1");
     searchTab.classList.remove("tabCss");
     userTab.classList.add("tabCss");
@@ -25,7 +28,7 @@ searchTab.addEventListener("click",()=>{
     userTab.classList.remove("tabCss");
     searchTab.classList.add("tabCss");
     currentTab=searchTab;
- 
+     searchCity.value="";
     displayUserData.classList.remove("active");
     searchTab2.classList.add("active");
     userlocation.classList.remove("active");
@@ -97,23 +100,28 @@ async  function callingApi()
 }
 
 searchIcon.addEventListener("click",(e)=>{
-     
-    let city=searchCity.value;
-    console.log(city);
+    let city=searchCity.value.trim();
     callingCityApi();
   async function callingCityApi(){  
     try{
-        loading.classList.add("active1");
-        loading.classList.add("active");
+       loading.classList.add("active1");
+       loading.classList.add("active");
        const response2= await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
        const data2= await response2.json();
        loading.classList.remove("active1");
        loading.classList.remove("active");
-       renderWeatherInfo(data2);
+       notfound.classList.remove("active");
+       if(data2?.main?.temp!=undefined)
+       {
+        renderWeatherInfo(data2);
+        userlocation.classList.remove("active");
+        displayUserData.classList.add("active1");
+        displayUserData.classList.add("active");
+       }
+       else{
+        error();
+       }
        
-       userlocation.classList.remove("active");
-       displayUserData.classList.add("active1");
-       displayUserData.classList.add("active");
     }
     catch(e){
         console.log("Some Error occurs in city fetching");
@@ -142,6 +150,12 @@ datawindinfo.innerText=data?.wind?.speed + " m/s";
 datahumidityawind.innerText=data?.main?.humidity +" %";
 datawindcloud.innerText=data?.clouds?.all +" %";
 cityName.innerText=data?.name;
-
 }
 
+function error(){  
+    userlocation.classList.remove("active");  
+    displayUserData.classList.remove("active");
+    displayUserData.classList.remove("active1");
+    notfound.classList.add("active"); 
+    console.log("Error ke andar aa gya hu");   
+}

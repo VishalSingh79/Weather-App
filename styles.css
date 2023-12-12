@@ -11,8 +11,9 @@
     --colorLight1: #DBE2EF;
     --colorLight2: #F9F7F7;
 }
+
 .wrapper{
-    width:100vw;
+    width:100%;
     height:100vh;
     color: var(--colorLight2);
     background-image: linear-gradient(160deg, #112d4e 0%, #3f72af 100%);;
@@ -51,7 +52,7 @@
 #weatherinfo{
     display: block;
     width:24rem;
-    height:30rem;
+    height:27rem;
     position: relative;
     top:-4.5rem;
     z-index: 1;
@@ -59,7 +60,7 @@
 }
 .loading{
     position: relative;
-    left:7.8rem;
+    left:7.6rem;
     width:8rem;
     height:8rem;
     text-align: center;
@@ -195,9 +196,21 @@
     margin-top: 0.2rem;
     cursor:pointer;
 }
+.notfound{
+    position:absolute;
+    top:6rem;
+    left:4.7rem;
+    width:15rem;
+    height:15rem;
+    justify-self: center;
+    scale:0;
+}
+
 .active{
     scale:1;
 }
 .active1{
     margin-top: 2.5rem;
 }
+    
+

@@ -16,15 +16,17 @@ userCalling();
 
 
 userTab.addEventListener("click",()=>{
-
     notfound.classList.remove("active");
     displayUserData.classList.remove("active1");
     searchTab.classList.remove("tabCss");
     userTab.classList.add("tabCss");
     userCalling();
+   // callingApi();
+    console.log("Insidde usertab");
     currentTab=userTab;
 });
 searchTab.addEventListener("click",()=>{
+    
     userTab.classList.remove("tabCss");
     searchTab.classList.add("tabCss");
     currentTab=searchTab;
@@ -36,13 +38,13 @@ searchTab.addEventListener("click",()=>{
 
 function userCalling(){
                                                                          
-    if(localStorage.key("latitude")&&localStorage.key("longitude"))
+    if(sessionStorage.key("lat")&&sessionStorage.key("lon"))
     {
         searchTab2.classList.remove("active");
         userlocation.classList.remove("active");
         displayUserData.classList.add("active");
         callingApi();
-         
+        console.log("Insidde usertabhjghhfdf");
     }
     else{
         console.log("Not a localStorege");
@@ -58,18 +60,19 @@ function userCalling(){
 };
 
 function getLocationAccess(){
-    if(navigator.geolocation)                                              
+    if("geolocation" in navigator)                                              
     navigator.geolocation.getCurrentPosition(gotposition,errorposition);
    else{
        alert("Your browser does not have this feature");
    }
 }
-
+//80.331871
+//26.449923
 async function gotposition(position){
     const lat=  position.coords.latitude;
     const lon=  position.coords.longitude;
-    localStorage.setItem("lon",lon);
-    localStorage.setItem("lat",lat);
+    sessionStorage.setItem("lon",lon);
+    sessionStorage.setItem("lat",lat);
     userlocation.classList.remove("active");
     displayUserData.classList.add("active");
     callingApi();
@@ -80,8 +83,8 @@ function errorposition(){
 
 async  function callingApi()
 {
-    lat=localStorage.getItem("lat");
-    lon=localStorage.getItem("lon");
+    lat=sessionStorage.getItem("lat");
+    lon=sessionStorage.getItem("lon");
     console.log(lat,lon);
     try{
         userlocation.classList.remove("active");
@@ -103,6 +106,8 @@ async  function callingApi()
 searchIcon.addEventListener("click",(e)=>{
     let city=searchCity.value.trim();
     callingCityApi();
+    displayUserData.classList.remove("active1");
+    displayUserData.classList.remove("active");
   async function callingCityApi(){  
     try{
        loading.classList.add("active1");
